@@ -1,4 +1,4 @@
-module automaxprocscli
+module github.com/jerome-laforge/automaxprocscli
 
 go 1.20
 
