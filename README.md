@@ -10,7 +10,7 @@ Usage of automaxprocscli:
   -v    display GOMAXPROCS before and after or if no change has occurred
 ```
 
-# example:
+# example
 ```
 - go install github.com/jerome-laforge/automaxprocscli@latest
 go: downloading github.com/jerome-laforge/automaxprocscli v0.0.0-20230607074117-ff6b276e3325
