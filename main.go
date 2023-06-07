@@ -1,17 +1,43 @@
 package main
 
 import (
-	"fmt"
-	"log"
-	"runtime"
-
-	"go.uber.org/automaxprocs/maxprocs"
+    "flag"
+    "fmt"
+    "log"
+    "os"
+    "runtime"
+    "go.uber.org/automaxprocs/maxprocs"
 )
 
 func main() {
-	if _, err := maxprocs.Set(); err != nil {
-		log.Fatal(err)
-	}
+    v := flag.Bool("v", false, "display GOMAXPROCS before and after or if no change has occurred")
+    flag.Parse()
 
-	fmt.Print(runtime.GOMAXPROCS(0))
+    if *v {
+       verbose()
+    }
+
+    if _, err := maxprocs.Set(); err != nil {
+       log.Fatal(err)
+    }
+
+    fmt.Print(runtime.GOMAXPROCS(0))
+}
+
+func verbose() {
+    before := runtime.GOMAXPROCS(0)
+
+    if _, err := maxprocs.Set(); err != nil {
+       log.Fatal(err)
+    }
+
+    after := runtime.GOMAXPROCS(0)
+
+    if before == after {
+       fmt.Printf("GOMAXPROCS: %v (no change)", before)
+       os.Exit(0)
+    }
+
+    fmt.Printf("GOMAXPROCS before: %v after: %v", before, after)
+    os.Exit(0)
 }
