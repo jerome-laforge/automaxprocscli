@@ -34,10 +34,10 @@ func verbose() {
     after := runtime.GOMAXPROCS(0)
 
     if before == after {
-       fmt.Printf("GOMAXPROCS: %v (no change)", before)
+       fmt.Printf("GOMAXPROCS: %v (no change)\n", before)
        os.Exit(0)
     }
 
-    fmt.Printf("GOMAXPROCS before: %v after: %v", before, after)
+    fmt.Printf("GOMAXPROCS before: %v after: %v\n", before, after)
     os.Exit(0)
 }
